@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import * as PlotlyJS from 'plotly.js-dist-min';
 import { PlotlyModule } from 'angular-plotly.js';
 import { MrPlotComponent } from './mr-plot/mr-plot.component';
+import { HttpClientModule } from '@angular/common/http'; // Add this
 
 PlotlyModule.plotlyjs = PlotlyJS;
 
@@ -19,6 +20,7 @@ PlotlyModule.plotlyjs = PlotlyJS;
     BrowserModule,
     AppRoutingModule,
     PlotlyModule,
+    HttpClientModule, // Add this
   ],
   providers: [],
   bootstrap: [AppComponent]
