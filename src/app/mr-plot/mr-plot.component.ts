@@ -8,12 +8,16 @@ import { PlotDataService } from '../plot-data.service';
 })
 export class MrPlotComponent implements OnInit {
   
-  @Input() url: string = '';
-  @Input() parameters: {[key: string]: string} = {};
+  @Input() urls: string[] = [];
+  @Input() parameters: {[key: string]: string|number|boolean} = {};
 
   graph: {data: Object[], layout: Object} = {
     data: [],
-    layout: {},
+    layout: {
+      width: 320,
+      height: 320,
+      title: "A Fancy Plot",
+    },
   };
 
   constructor(
@@ -25,7 +29,11 @@ export class MrPlotComponent implements OnInit {
   }
 
   loadData(): void {
-    this.graph = this.plot_data.data(this.url, this.parameters);
+    this.plot_data.data(this.urls, this.parameters).subscribe(
+      (traces) => {
+        this.graph.data = traces;
+      }
+    )
   }
 
 }
